@@ -28,7 +28,7 @@ class _AppState extends State<App> {
           child: ElevatedButton(
             child: const Text('Show Native Toast'),
             onPressed: () async {
-              NativeToast().makeText(
+              await NativeToast().makeText(
                 message: "This is a Native Toast On Android!",
                 duration: NativeToast.shortLength,
               );
