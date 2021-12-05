@@ -22,6 +22,7 @@
  */
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -46,9 +47,17 @@ class NativeToast {
   /// by default it is set to [shortLength]
   Future<void> makeText(
       {required String message, int duration = shortLength}) async {
-    await _channel.invokeMethod("showToast", {
-      "message": message,
-      "duration": duration,
-    });
+    if (Platform.isAndroid) {
+      try {
+        await _channel.invokeMethod("showToast", {
+          "message": message,
+          "duration": duration,
+        });
+      } catch (error) {
+        rethrow;
+      }
+    } else {
+      throw "NativeToast is plugin only made for Android.";
+    }
   }
 }
