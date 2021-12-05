@@ -1,7 +1,9 @@
-name: Pub Publish
+name: Pub Deploy
 
 on:
   push:
+    branches: [ release ]
+  pull_request:
     branches: [ release ]
 
 jobs:
@@ -9,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Cache Flutter dependencies
         uses: actions/cache@v2
         with:
@@ -24,10 +26,12 @@ jobs:
           channel: "master"
       - name: Install dependencies
         run: flutter pub get
-      - name: Analyze
+      - name: Verify formatting
+        run: flutter format --output=none --set-exit-if-changed .
+      - name: Analyze project source
         run: flutter analyze
       - name: Run tests
-      run: flutter test
+        run: flutter test
       - name: Setup Pub Credentials
         shell: bash
         env:
