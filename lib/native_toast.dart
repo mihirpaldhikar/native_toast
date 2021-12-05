@@ -26,10 +26,16 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class NativeToast {
+  static const int longLength = 1;
+  static const int shortLength = 0;
+
   static const MethodChannel _channel = MethodChannel('native_toast');
 
-  static Future<String?> get platformVersion async {
-    final String? version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  Future<void> makeText(
+      {required String message, required int duration}) async {
+    await _channel.invokeMethod("showToast", {
+      "message": message,
+      "duration": duration,
+    });
   }
 }

@@ -29,6 +29,6 @@ jobs:
       - name: Verify formatting
         run: flutter format --output=none --set-exit-if-changed .
       - name: Analyze project source
-        run: flutter analyze --ignore-deprecation
+        run: flutter analyze
       - name: Run tests
         run: flutter test

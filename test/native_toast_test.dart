@@ -21,6 +21,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:native_toast/native_toast.dart';
@@ -32,7 +33,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return;
     });
   });
 
@@ -40,7 +41,8 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await NativeToast.platformVersion, '42');
+  test('showToast', () async {
+    expect(NativeToast.shortLength, 0);
+    expect(NativeToast.longLength, 1);
   });
 }
