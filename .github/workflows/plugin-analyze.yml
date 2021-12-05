@@ -1,17 +1,15 @@
-name: Plugin Analyze
+name: Pub Publish
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ release ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Cache Flutter dependencies
         uses: actions/cache@v2
         with:
@@ -26,9 +24,21 @@ jobs:
           channel: "master"
       - name: Install dependencies
         run: flutter pub get
-      - name: Verify formatting
-        run: flutter format --output=none --set-exit-if-changed .
-      - name: Analyze project source
+      - name: Analyze
         run: flutter analyze
       - name: Run tests
-        run: flutter test
+      run: flutter test
+      - name: Setup Pub Credentials
+        shell: bash
+        env:
+          PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+          PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+          PUB_DEV_PUBLISH_TOKEN_ENDPOINT: ${{ secrets.PUB_DEV_PUBLISH_TOKEN_ENDPOINT }}
+          PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
+          PUB_DEV_PUBLISH_ID_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ID_TOKEN }}
+        run: |
+          sh ./pub.sh
+      - name: Check Publish Warnings
+        run: dart pub publish --dry-run
+      - name: Publish Package
+        run: dart pub publish -f
