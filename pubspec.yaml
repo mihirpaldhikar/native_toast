@@ -1,6 +1,6 @@
 name: native_toast
 description: The Flutter Plugin to show native toast on Android
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/imihirpaldhikar/native_toast
 
 environment:
