@@ -1,4 +1,4 @@
-![Native Toast](./assets/project_banner.png)
+![Native Toast](https://raw.githubusercontent.com/imihirpaldhikar/native_toast/main/assets/project_banner.png)
 
 
 ![Pub Version](https://img.shields.io/pub/v/native_toast?color=g&label=Package%20Version&logo=flutter&logoColor=blue&style=flat)
@@ -20,8 +20,8 @@ The ```native_toast``` plugin works on the basis of the [`Toast`](https://develo
 
 The below is a demo of the plugin running on the Android device with Android Version 12-light (SDK 31). On both Light and Dark theme.
 
-<img src="./assets/demo-light.png" height=500>
-<img src="./assets/demo.png" height=500>
+<img src="https://raw.githubusercontent.com/imihirpaldhikar/native_toast/main/assets/demo-light.png" height=500 alt="Light Theme Demo Image">
+<img src="https://raw.githubusercontent.com/imihirpaldhikar/native_toast/main/assets/demo.png" height=500 alt="Dark Theme Demo Image">
 
 > *Note: The layout of the toast shown depends completely on the Android version and how the OEM has implementd the toast. In the Latest Android version i.e Android 12, the toast is shown in the with a app icon alog with the text.*
 
