@@ -28,7 +28,7 @@ import 'package:flutter/services.dart';
 
 /// [NativeToast] is responsible to connect to [Android] via the platform channel
 /// Example Usage:
-///  await NativeToast().makeText(
+///  await NativeToast.makeText(
 //           message: "This is a Native Toast On Android!",
 //           duration: NativeToast.shortLength,
 //         );
@@ -42,11 +42,13 @@ class NativeToast {
   static const MethodChannel _channel = MethodChannel('native_toast');
 
   /// [makeText] is the function responsible to show the toast natively.
-  /// [message] is the required parameter inorder to show the text message.
+  /// [message] is the required parameter in order to show the text message.
   /// [duration] is the optional parameter to set how log a [Toast] is show.
   /// by default it is set to [shortLength]
-  Future<void> makeText(
-      {required String message, int duration = shortLength}) async {
+  static Future<void> makeText({
+    required String message,
+    int duration = shortLength,
+  }) async {
     if (Platform.isAndroid) {
       try {
         await _channel.invokeMethod("showToast", {

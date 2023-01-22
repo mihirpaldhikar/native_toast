@@ -33,10 +33,10 @@ Import the follwing package in your ```.dart``` file in which you want to show t
 import 'package:native_toast/native_toast.dart';
 ```
 
-Use the ```NativeToast()``` class to show the toast. as follows:
+Use the ```NativeToast``` class to show the toast. as follows:
 
 ```dart
-await NativeToast().makeText(
+await NativeToast.makeText(
     message: "This is a Native Toast On Android!",
     duration: NativeToast.shortLength,
 );
@@ -62,7 +62,7 @@ Example:
 ElevatedButton(
     child: const Text('Show Native Toast'),
     onPressed: () async {
-        NativeToast().makeText(
+        NativeToast.makeText(
           message: "This is a Native Toast On Android!",
           duration: NativeToast.shortLength,
         );
@@ -82,7 +82,7 @@ ElevatedButton(
  ```
  Copyright 2021 Mihir Paldhikar
 
-Permission is hereby granted, free of charge, 
+Permission is hereby granted, free of charge,
 to any person obtaining a copy of this software
 and associated documentation files
 (the"Software"), to deal in the Software without
